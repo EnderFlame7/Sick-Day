@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cba7g1raf1gnc"]
+
+[ext_resource type="Texture2D" uid="uid://iyhycv3g8gjk" path="res://Assets/Projectiles/blue_projectile.png" id="1_5y1y3"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_kbda8"]
+[ext_resource type="Texture2D" uid="uid://c65a8hiangp1i" path="res://Assets/Projectiles/green_projectile.png" id="2_nt3gt"]
+[ext_resource type="Texture2D" uid="uid://b6vu8wlj7dxgn" path="res://Assets/Projectiles/yellow_projectile.png" id="3_ugx5c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gc2oy"]
+radius = 173.333
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hpi7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5y1y3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nt3gt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ugx5c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Node2D" node_paths=PackedStringArray("hitbox", "hitbox_collider", "sprite", "sfx", "on_screen_notifier")]
+texture_filter = 1
+scale = Vector2(0.15, 0.15)
+script = ExtResource("1_kbda8")
+hitbox = NodePath("Hitbox")
+hitbox_collider = NodePath("Hitbox/HitboxCollider")
+sprite = NodePath("Sprite")
+sfx = NodePath("SFX")
+on_screen_notifier = NodePath("OnScreenNotifier")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["ally_hitbox"]]
+z_index = 5
+collision_layer = 4
+collision_mask = 8
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_gc2oy")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hpi7p")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true

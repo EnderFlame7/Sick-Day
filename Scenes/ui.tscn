@@ -1,0 +1,682 @@
+[gd_scene load_steps=39 format=3 uid="uid://7bvten4qyvls"]
+
+[ext_resource type="Theme" uid="uid://86t4pq3qlxof" path="res://Themes/ui_theme.tres" id="1_2mwku"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_sgud0"]
+[ext_resource type="Texture2D" uid="uid://bio2di0b3uoid" path="res://Assets/UI/dna.png" id="3_kw5lh"]
+[ext_resource type="Texture2D" uid="uid://c1i0axiwg4au2" path="res://Assets/UI/upgrade_disabled.png" id="3_wg8ys"]
+[ext_resource type="Texture2D" uid="uid://w2roufbc117r" path="res://Assets/UI/Thermometer/thermometer_underlay.png" id="4_3qwei"]
+[ext_resource type="Texture2D" uid="uid://cavlb5yqd7h8b" path="res://Assets/UI/Thermometer/thermometer_overlay.png" id="5_llbvs"]
+[ext_resource type="Texture2D" uid="uid://ctqaqskbkknbb" path="res://Assets/UI/currency_panel.png" id="5_vcidw"]
+[ext_resource type="Texture2D" uid="uid://bioir34sds2kf" path="res://Assets/UI/Thermometer/thermometer_progress.png" id="6_ysna4"]
+[ext_resource type="Texture2D" uid="uid://bfg10ry6rwirl" path="res://Assets/UI/wbc_panel.png" id="7_aessl"]
+[ext_resource type="Texture2D" uid="uid://0pvor37uypw4" path="res://Assets/UI/upgrade_panel.png" id="7_gse74"]
+[ext_resource type="Texture2D" uid="uid://bkskufx42xd5f" path="res://Assets/UI/close_normal.png" id="8_t7iru"]
+[ext_resource type="PackedScene" uid="uid://s2ivs7hnah0p" path="res://Scenes/stat_info.tscn" id="9_jmsxe"]
+[ext_resource type="Texture2D" uid="uid://b1k2cr5ky7uaj" path="res://Assets/UI/close_pressed.png" id="9_s8fch"]
+[ext_resource type="Texture2D" uid="uid://d0j2bikk3ofj2" path="res://Assets/UI/close_hover.png" id="10_iubfo"]
+[ext_resource type="Texture2D" uid="uid://bpwfi6wq7l60q" path="res://Assets/UI/upgrade_normal.png" id="10_jg51g"]
+[ext_resource type="Texture2D" uid="uid://bfulhwlmr8dex" path="res://Assets/UI/upgrade_pressed.png" id="11_4o8ff"]
+[ext_resource type="Texture2D" uid="uid://dnyvdg4q2iafs" path="res://Assets/UI/upgrade_hover.png" id="12_7u75f"]
+[ext_resource type="Texture2D" uid="uid://clkcy251nhu0t" path="res://Assets/UI/max_upgrades.png" id="13_ppfqe"]
+[ext_resource type="Texture2D" uid="uid://b0fcets7pifxf" path="res://Assets/UI/sell_normal.png" id="17_ugjhe"]
+[ext_resource type="Texture2D" uid="uid://bwwmo85l0dtcy" path="res://Assets/UI/sell_pressed.png" id="18_hymps"]
+[ext_resource type="Texture2D" uid="uid://ckq7wo52dq1rk" path="res://Assets/UI/sell_hover.png" id="19_617xb"]
+[ext_resource type="AudioStream" uid="uid://catgf3x0q102w" path="res://Assets/SFX/click_wbc.wav" id="23_d6l2b"]
+[ext_resource type="Texture2D" uid="uid://d2drbxogcly0d" path="res://Assets/UI/splat.png" id="23_qptao"]
+[ext_resource type="Texture2D" uid="uid://c87m05v4pjy55" path="res://Assets/UI/game_over.png" id="24_0r8wy"]
+[ext_resource type="Texture2D" uid="uid://cvt1g085d8m88" path="res://Assets/UI/retry_normal.png" id="25_rcit5"]
+[ext_resource type="Texture2D" uid="uid://dqn82s81ho4sk" path="res://Assets/UI/retry_pressed.png" id="26_fsg34"]
+[ext_resource type="Texture2D" uid="uid://b7rf3fddu8so8" path="res://Assets/UI/retry_hover.png" id="27_lurws"]
+[ext_resource type="Texture2D" uid="uid://bjre4f0ucqfaj" path="res://Assets/UI/menu_normal.png" id="28_4711o"]
+[ext_resource type="Texture2D" uid="uid://cniv6vkx8u6b1" path="res://Assets/UI/menu_pressed.png" id="29_wi87b"]
+[ext_resource type="Texture2D" uid="uid://i4ulmabgqvvs" path="res://Assets/UI/menu_hover.png" id="30_nlo3d"]
+
+[sub_resource type="FontVariation" id="FontVariation_v1wyf"]
+spacing_glyph = 4
+spacing_space = 5
+
+[sub_resource type="FontVariation" id="FontVariation_6hrw6"]
+spacing_glyph = 6
+spacing_space = 10
+
+[sub_resource type="FontVariation" id="FontVariation_jfper"]
+spacing_glyph = 3
+spacing_space = 10
+spacing_top = 10
+
+[sub_resource type="FontVariation" id="FontVariation_3fcvr"]
+spacing_glyph = 3
+spacing_space = 5
+
+[sub_resource type="Animation" id="Animation_1u7pd"]
+resource_name = "game_over"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Game Over Screen/Splat:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4995),
+"transitions": PackedFloat32Array(0.15, 1),
+"update": 0,
+"values": [-0.610865, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Game Over Screen/Splat:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4995),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Game Over Screen/Game Over Text:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4995),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Game Over Screen/Game Over Text:rotation")
+tracks/3/interp = 3
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.00157411, 0.498994),
+"transitions": PackedFloat32Array(0.15, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Game Over Screen/VBoxContainer:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4995),
+"transitions": PackedFloat32Array(1, 0.25, 1),
+"update": 0,
+"values": [Vector2(460.8, 650), Vector2(460.8, 603.249), Vector2(460.8, 412.128)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Game Over Screen:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lvbe4"]
+resource_name = "hide_upgrade_panel"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Upgrade/Upgrade Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(70, 9), Vector2(-300, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Upgrade/Upgrade Panel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Upgrade:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_jw0m5"]
+resource_name = "show_upgrade_panel"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Upgrade/Upgrade Panel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(-300, 9), Vector2(70, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Upgrade/Upgrade Panel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Upgrade:mouse_filter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kv4dr"]
+resource_local_to_scene = true
+_data = {
+"game_over": SubResource("Animation_1u7pd"),
+"hide_upgrade_panel": SubResource("Animation_lvbe4"),
+"show_upgrade_panel": SubResource("Animation_jw0m5")
+}
+
+[node name="UI" type="Control"]
+z_index = 100
+texture_filter = 1
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_2mwku")
+script = ExtResource("1_sgud0")
+wbc_button_size = Vector2(75, 75)
+upgrade_disabled_texture = ExtResource("3_wg8ys")
+max_upgrades_texture = ExtResource("13_ppfqe")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="DNAPanel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -90.0
+offset_top = 5.0
+offset_right = 111.0
+offset_bottom = 122.0
+scale = Vector2(1.5, 1)
+texture = ExtResource("5_vcidw")
+metadata/_edit_lock_ = true
+
+[node name="DNACounter" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.1
+offset_left = 10.0
+offset_top = 40.0
+offset_right = -10.0
+offset_bottom = 20.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="DNAIcon" type="TextureRect" parent="DNACounter"]
+layout_mode = 2
+texture = ExtResource("3_kw5lh")
+expand_mode = 3
+stretch_mode = 4
+metadata/_edit_lock_ = true
+
+[node name="DNALabel" type="Label" parent="DNACounter"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Timer Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.414
+anchor_right = 0.586
+anchor_bottom = 0.125
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("FontVariation_v1wyf")
+theme_override_font_sizes/font_size = 24
+text = "WAVE 50 STARTS IN 10 SECONDS!"
+horizontal_alignment = 3
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Wave Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 1.0
+anchor_bottom = 0.125
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+theme_override_fonts/font = SubResource("FontVariation_v1wyf")
+theme_override_font_sizes/font_size = 24
+text = "WAVE 50 / 50"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Thermometer" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.9
+anchor_top = 0.135
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ThermometerBar" type="TextureProgressBar" parent="Thermometer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 76.7999
+offset_bottom = 529.2
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("4_3qwei")
+texture_over = ExtResource("5_llbvs")
+texture_progress = ExtResource("6_ysna4")
+texture_progress_offset = Vector2(67, 28)
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="ThermometerLabel" type="Label" parent="Thermometer/ThermometerBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.85
+anchor_right = 1.0
+anchor_bottom = 0.975
+offset_left = 0.0219994
+offset_top = -0.424072
+offset_right = -0.0220108
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 24
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Upgrade" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchor_top = 0.177
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_right = 29.0
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Upgrade Panel" type="TextureRect" parent="Upgrade"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.420339
+anchor_top = -0.05
+anchor_right = 0.359682
+anchor_bottom = 0.915
+offset_left = -70.9153
+offset_top = 35.6652
+offset_right = -71.028
+offset_bottom = -79.1005
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.27)
+texture = ExtResource("7_gse74")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Upgrade/Upgrade Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.185
+anchor_top = 0.135
+anchor_right = 0.9
+anchor_bottom = 0.865
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Title Close Button Region" type="HBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="WBC Title Label" type="Label" parent="Upgrade/Upgrade Panel/VBoxContainer/Title Close Button Region"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(231, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = SubResource("FontVariation_6hrw6")
+theme_override_font_sizes/font_size = 24
+text = "Rifle Cell"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Close Button" type="TextureButton" parent="Upgrade/Upgrade Panel/VBoxContainer/Title Close Button Region"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 36)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("8_t7iru")
+texture_pressed = ExtResource("9_s8fch")
+texture_hover = ExtResource("10_iubfo")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Viewport Level Tier Region" type="HBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 112)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="WBC Viewport" type="TextureRect" parent="Upgrade/Upgrade Panel/VBoxContainer/Viewport Level Tier Region"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Level And Tier Region" type="VBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer/Viewport Level Tier Region"]
+layout_mode = 2
+alignment = 1
+
+[node name="Tier Value" type="Label" parent="Upgrade/Upgrade Panel/VBoxContainer/Viewport Level Tier Region/Level And Tier Region"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(123, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_jfper")
+theme_override_font_sizes/font_size = 24
+text = "TIER V"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="WBC Stats Region" type="VBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Stat Info" parent="Upgrade/Upgrade Panel/VBoxContainer/WBC Stats Region" instance=ExtResource("9_jmsxe")]
+layout_mode = 2
+
+[node name="Stat Info2" parent="Upgrade/Upgrade Panel/VBoxContainer/WBC Stats Region" instance=ExtResource("9_jmsxe")]
+layout_mode = 2
+
+[node name="Stat Info3" parent="Upgrade/Upgrade Panel/VBoxContainer/WBC Stats Region" instance=ExtResource("9_jmsxe")]
+layout_mode = 2
+
+[node name="Stat Info4" parent="Upgrade/Upgrade Panel/VBoxContainer/WBC Stats Region" instance=ExtResource("9_jmsxe")]
+layout_mode = 2
+
+[node name="Stat Info5" parent="Upgrade/Upgrade Panel/VBoxContainer/WBC Stats Region" instance=ExtResource("9_jmsxe")]
+layout_mode = 2
+
+[node name="Upgrade Sell Region" type="VBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Upgrade" type="HBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="DNA Icon" type="TextureRect" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region/Upgrade"]
+layout_mode = 2
+texture = ExtResource("3_kw5lh")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Upgrade Cost" type="Label" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region/Upgrade"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(67, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_3fcvr")
+text = "999999
+"
+
+[node name="Upgrade Button" type="TextureButton" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region/Upgrade"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(164, 0)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("10_jg51g")
+texture_pressed = ExtResource("11_4o8ff")
+texture_hover = ExtResource("12_7u75f")
+texture_disabled = ExtResource("3_wg8ys")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Sell" type="HBoxContainer" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="DNA Icon" type="TextureRect" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region/Sell"]
+layout_mode = 2
+texture = ExtResource("3_kw5lh")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Sell Price" type="Label" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region/Sell"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(155, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_3fcvr")
+text = "999999
+"
+
+[node name="Sell Button" type="TextureButton" parent="Upgrade/Upgrade Panel/VBoxContainer/Upgrade Sell Region/Sell"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+focus_mode = 0
+texture_normal = ExtResource("17_ugjhe")
+texture_pressed = ExtResource("18_hymps")
+texture_hover = ExtResource("19_617xb")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WBC Panel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.05
+anchor_top = 0.1
+anchor_right = 0.175
+anchor_bottom = 0.925
+offset_top = 58.2
+offset_right = -9.99998
+offset_bottom = 38.2001
+grow_vertical = 2
+texture = ExtResource("7_aessl")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="WhiteBloodCells" type="VBoxContainer" parent="WBC Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.13
+anchor_right = 0.955
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 30.0
+offset_right = -25.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
+
+[node name="Game Over Screen" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Splat" type="TextureRect" parent="Game Over Screen"]
+custom_minimum_size = Vector2(861, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 5.67232
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(575, 334)
+texture = ExtResource("23_qptao")
+metadata/_edit_use_anchors_ = true
+
+[node name="Game Over Text" type="TextureRect" parent="Game Over Screen"]
+custom_minimum_size = Vector2(975, 330)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0807292
+anchor_top = 0.143519
+anchor_right = 0.927083
+anchor_bottom = 0.652778
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(490, 155)
+texture = ExtResource("24_0r8wy")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game Over Screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_top = 0.55
+anchor_right = 0.6
+anchor_bottom = 0.975
+offset_left = -3.05176e-05
+offset_top = 293.6
+offset_right = -6.10352e-05
+offset_bottom = 237.872
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -5
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Retry Button" type="TextureButton" parent="Game Over Screen/VBoxContainer"]
+custom_minimum_size = Vector2(218, 76)
+layout_mode = 2
+texture_normal = ExtResource("25_rcit5")
+texture_pressed = ExtResource("26_fsg34")
+texture_hover = ExtResource("27_lurws")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Menu Button" type="TextureButton" parent="Game Over Screen/VBoxContainer"]
+custom_minimum_size = Vector2(218, 76)
+layout_mode = 2
+texture_normal = ExtResource("28_4711o")
+texture_pressed = ExtResource("29_wi87b")
+texture_hover = ExtResource("30_nlo3d")
+ignore_texture_size = true
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_kv4dr")
+}
+
+[node name="Show SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("23_d6l2b")
+volume_db = -25.0
+
+[connection signal="pressed" from="Game Over Screen/VBoxContainer/Retry Button" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="Game Over Screen/VBoxContainer/Menu Button" to="." method="_on_menu_button_pressed"]

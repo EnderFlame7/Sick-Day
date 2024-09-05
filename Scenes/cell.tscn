@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://duq0n4qpejesx"]
+
+[ext_resource type="Script" path="res://Scripts/cell.gd" id="1_503lc"]
+[ext_resource type="Texture2D" uid="uid://40160bjp56v1" path="res://Assets/Enviornment/cell.png" id="3_8rh6g"]
+[ext_resource type="Texture2D" uid="uid://6o5cw8fgmd7l" path="res://icon.svg" id="3_bcaep"]
+[ext_resource type="AudioStream" uid="uid://cas1k3nudjcf" path="res://Assets/SFX/swimming_genomes.wav" id="4_2rjgb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vm44"]
+radius = 175.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmoms"]
+radius = 175.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3sj56"]
+vertices = PackedVector2Array(42.3672, -159.258, 82.8984, -142.289, 116.867, -115.867, 143.242, -81.9609, 159.25, -42.4063, 164.906, 0, 159.258, 42.3672, 142.289, 82.8984, 115.898, 116.844, 82.8984, 142.289, 42.3672, 159.258, 0, 164.906, -42.3672, 159.258, -82.8984, 142.289, -116.867, 115.867, -143.242, 81.9609, -159.25, 42.4063, -164.906, 0, -159.25, -42.4063, -143.211, -82.0391, -116.859, -116.859, -82.0391, -143.211, -42.4063, -159.25, 0, -164.906)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -175, 45, -169, 88, -151, 124, -123, 152, -87, 169, -45, 175, 0, 169, 45, 151, 88, 123, 124, 88, 151, 45, 169, 0, 175, -45, 169, -88, 151, -124, 123, -152, 87, -169, 45, -175, 0, -169, -45, -152, -87, -124, -124, -87, -152, -45, -169)])
+
+[node name="Cell" type="StaticBody2D"]
+z_index = -50
+texture_filter = 1
+position = Vector2(576, 324)
+script = ExtResource("1_503lc")
+radius = 100
+spin_rate = 5
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_2vm44")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["cell_hurtbox"]]
+unique_name_in_owner = true
+collision_mask = 24
+
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_pmoms")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
+unique_name_in_owner = true
+navigation_polygon = SubResource("NavigationPolygon_3sj56")
+navigation_layers = 4
+
+[node name="Locks" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="1" type="Marker2D" parent="Locks"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Locks/1"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("3_bcaep")
+
+[node name="2" type="Marker2D" parent="Locks"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Locks/2"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("3_bcaep")
+
+[node name="3" type="Marker2D" parent="Locks"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Locks/3"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("3_bcaep")
+
+[node name="4" type="Marker2D" parent="Locks"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Locks/4"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("3_bcaep")
+
+[node name="5" type="Marker2D" parent="Locks"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Locks/5"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("3_bcaep")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("3_8rh6g")
+
+[node name="Genome SFX" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_2rjgb")
+volume_db = -30.0
+bus = &"SFX"

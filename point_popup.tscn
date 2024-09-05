@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://btnrermx2tjj2"]
+
+[ext_resource type="Script" path="res://Scripts/point_popup.gd" id="1_rn3no"]
+[ext_resource type="Texture2D" uid="uid://bio2di0b3uoid" path="res://Assets/UI/dna.png" id="2_m4rog"]
+
+[sub_resource type="Animation" id="Animation_j6jdu"]
+resource_name = "popup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(-50, 0), Vector2(-50, -25)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ni6d5"]
+_data = {
+"popup": SubResource("Animation_j6jdu")
+}
+
+[node name="PointPopup" type="VBoxContainer"]
+z_index = 90
+offset_left = -50.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = 31.0
+pivot_offset = Vector2(50, 0)
+mouse_filter = 2
+theme_override_constants/separation = -4
+script = ExtResource("1_rn3no")
+
+[node name="DNA" type="HBoxContainer" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="DNA"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("2_m4rog")
+expand_mode = 1
+
+[node name="DNAValue" type="Label" parent="DNA"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 18
+text = "+ 99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Overkill" type="HBoxContainer" parent="."]
+z_index = 90
+texture_filter = 1
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Overkill"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("2_m4rog")
+expand_mode = 1
+
+[node name="OverkillValue" type="Label" parent="Overkill"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.490196, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 18
+text = "+ 99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../DNA")
+libraries = {
+"": SubResource("AnimationLibrary_ni6d5")
+}
+
+[connection signal="animation_finished" from="AnimPlayer" to="DNA" method="_on_animation_finished"]

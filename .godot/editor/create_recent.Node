@@ -1,0 +1,14 @@
+VBoxContainer
+AnimationPlayer
+TextureRect
+HBoxContainer
+Label
+Sprite2D
+AudioStreamPlayer
+WBC
+Control
+GPUParticles2D
+TextureButton
+Button
+CollisionShape2D
+Area2D

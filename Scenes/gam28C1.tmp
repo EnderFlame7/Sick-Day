@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://cxegyhn5la5d3"]
+
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_hl3oa"]
+[ext_resource type="PackedScene" uid="uid://d21fqce7gv3yj" path="res://Scenes/rifle_wbc.tscn" id="2_5o8ii"]
+[ext_resource type="PackedScene" uid="uid://7bvten4qyvls" path="res://Scenes/ui.tscn" id="2_8rfju"]
+[ext_resource type="PackedScene" uid="uid://d0y41im87rb7b" path="res://Scenes/sniper_wbc.tscn" id="3_8w0jj"]
+[ext_resource type="PackedScene" uid="uid://m7gpeiyygvd7" path="res://Scenes/shotgun_wbc.tscn" id="4_5oo2f"]
+[ext_resource type="PackedScene" uid="uid://biujeanq81pyw" path="res://Scenes/brawl_wbc.tscn" id="5_xmstd"]
+[ext_resource type="PackedScene" uid="uid://ljleeuk85l0j" path="res://Scenes/pathogen.tscn" id="6_cf5td"]
+[ext_resource type="PackedScene" uid="uid://cisymsmrbdha4" path="res://Scenes/bean_pathogen.tscn" id="7_0qw6f"]
+[ext_resource type="AudioStream" uid="uid://ceckamk42xm7h" path="res://Assets/SFX/military_music.wav" id="7_w2tdl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xn2l5"]
+vertices = PackedVector2Array(1177, -32, 1177, 676.992, -43, 676, -43, -32.9922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-53, -43, -53, 686, 1187, 687, 1187, -42)])
+
+[node name="Game" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_hl3oa")
+dna = 50
+MAX_WAVE = 50
+enemies_per_wave = 5
+setup_time = 3.0
+bake_delay = 0.75
+music_volume_db = -30.0
+white_blood_cells = Array[PackedScene]([ExtResource("2_5o8ii"), ExtResource("3_8w0jj"), ExtResource("4_5oo2f"), ExtResource("5_xmstd")])
+pathogens = Array[PackedScene]([ExtResource("6_cf5td"), ExtResource("7_0qw6f")])
+
+[node name="PathogenNavRegion" type="NavigationRegion2D" parent="."]
+unique_name_in_owner = true
+navigation_polygon = SubResource("NavigationPolygon_xn2l5")
+navigation_layers = 2
+
+[node name="Pathogens" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Genomes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="UI" parent="." instance=ExtResource("2_8rfju")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="WBCPreview" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0.588235)
+z_index = 200
+scale = Vector2(0.1, 0.1)
+
+[node name="BakeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="Spawn Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+autostart = true
+
+[node name="Pre Wave Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_w2tdl")
+volume_db = -25.0
+bus = &"Music"
+
+[connection signal="timeout" from="Pre Wave Timer" to="." method="_on_pre_wave_timer_timeout"]
