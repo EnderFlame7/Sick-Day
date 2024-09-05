@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0pirmhyi5q0x"]
+
+[ext_resource type="Script" path="res://Scripts/nucleus.gd" id="1_gr4xm"]
+[ext_resource type="Texture2D" uid="uid://oq75h14naflf" path="res://Assets/Enviornment/smug_face.png" id="2_kq2a2"]
+[ext_resource type="Texture2D" uid="uid://jaefu0esh84u" path="res://Assets/Enviornment/scared_face.png" id="4_wxsho"]
+[ext_resource type="Texture2D" uid="uid://b7vjv7wy5uqec" path="res://Assets/Enviornment/normal_body.png" id="5_7eejb"]
+[ext_resource type="Texture2D" uid="uid://dc2m2rfddy4m0" path="res://Assets/Enviornment/scared_body.png" id="6_nmkvl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orbp5"]
+radius = 35.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5o76d"]
+radius = 36.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_reu8e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7eejb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nmkvl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dsn2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kq2a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wxsho")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Nucleus" type="CharacterBody2D"]
+texture_filter = 1
+collision_layer = 2
+collision_mask = 16
+motion_mode = 1
+script = ExtResource("1_gr4xm")
+speed = 25.0
+radius = 20
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_orbp5")
+
+[node name="Hurtbox" type="Area2D" parent="." groups=["nucleus_hurtbox"]]
+unique_name_in_owner = true
+collision_layer = 2
+collision_mask = 16
+
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox"]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_5o76d")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_reu8e")
+
+[node name="Face" type="AnimatedSprite2D" parent="Body"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_dsn2r")

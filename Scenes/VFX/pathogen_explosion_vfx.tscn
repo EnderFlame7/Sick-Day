@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://3umhcnng4jmg"]
+
+[ext_resource type="Texture2D" uid="uid://b6vu8wlj7dxgn" path="res://Assets/Projectiles/yellow_projectile.png" id="1_073uf"]
+[ext_resource type="Script" path="res://Scripts/one_shot_vfx.gd" id="2_u0fxk"]
+
+[sub_resource type="Gradient" id="Gradient_ra1in"]
+colors = PackedColorArray(1, 1, 1, 1, 0.686275, 0.686275, 0.686275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lg0ld"]
+gradient = SubResource("Gradient_ra1in")
+
+[sub_resource type="Curve" id="Curve_1slxd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50237, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rgjsa"]
+curve = SubResource("Curve_1slxd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e4kpm"]
+resource_local_to_scene = true
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 125.0
+initial_velocity_max = 175.0
+gravity = Vector3(0, 60, 0)
+scale_min = 0.01
+scale_max = 0.02
+scale_curve = SubResource("CurveTexture_rgjsa")
+color_initial_ramp = SubResource("GradientTexture1D_lg0ld")
+
+[node name="PathogenExplosionVFX" type="GPUParticles2D"]
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_e4kpm")
+texture = ExtResource("1_073uf")
+lifetime = 0.5
+explosiveness = 1.0
+fixed_fps = 10
+script = ExtResource("2_u0fxk")

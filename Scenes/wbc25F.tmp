@@ -1,0 +1,183 @@
+[gd_scene load_steps=13 format=3 uid="uid://d21fqce7gv3yj"]
+
+[ext_resource type="Script" path="res://Scripts/wbc.gd" id="1_g6cgr"]
+[ext_resource type="Texture2D" uid="uid://dw17j84y0v4on" path="res://Assets/WBCs/Bodies/body_hat.png" id="3_uwvt7"]
+[ext_resource type="Texture2D" uid="uid://ubbba82pqmvp" path="res://Assets/WBCs/Faces/eyes.png" id="4_fkwdq"]
+[ext_resource type="Texture2D" uid="uid://d3b6h4vjcufmj" path="res://Assets/WBCs/Arms/rifle_arm.png" id="5_okasc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_srcoh"]
+radius = 294.353
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw4in"]
+radius = 282.353
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb83r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uwvt7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5lxfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_fkwdq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olykq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_okasc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_yl405"]
+resource_name = "attack"
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(-175, 129.412), Vector2(-117.647, 129.412)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(0.75, 1),
+"update": 0,
+"values": [Vector2(-20, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Face:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-10, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lq46l"]
+resource_name = "move"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Arm:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-175, 129.412), Vector2(-175, 114), Vector2(-175, 129.412), Vector2(-175, 144), Vector2(-175, 129.412)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Face:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0), Vector2(0, -25), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(0.75, 0.75, 0.75, 0.75, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 20), Vector2(0, 0), Vector2(0, -20), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7km7s"]
+_data = {
+"attack": SubResource("Animation_yl405"),
+"move": SubResource("Animation_lq46l")
+}
+
+[node name="WBC" type="CharacterBody2D" node_paths=PackedStringArray("collider", "hurtbox", "sprite", "nav_agent")]
+texture_filter = 1
+scale = Vector2(0.085, 0.085)
+collision_layer = 4
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_g6cgr")
+title = "Rifle Cell"
+initial_cost = 10
+damage = 2
+icon = ExtResource("3_uwvt7")
+collider = NodePath("Collider")
+hurtbox = NodePath("Hurtbox")
+sprite = NodePath("Body")
+nav_agent = NodePath("NavAgent")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_srcoh")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="HurtboxCollider" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_vw4in")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(-18.6977, 0)
+sprite_frames = SubResource("SpriteFrames_nb83r")
+offset = Vector2(35, -58)
+
+[node name="Face" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9.50756, 0)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_5lxfw")
+offset = Vector2(35, -58)
+
+[node name="Arm" type="AnimatedSprite2D" parent="."]
+position = Vector2(-167.294, 129.412)
+sprite_frames = SubResource("SpriteFrames_olykq")
+offset = Vector2(190.645, 1.58823)
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7km7s")
+}

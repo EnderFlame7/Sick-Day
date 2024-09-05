@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://s2ivs7hnah0p"]
+
+[ext_resource type="Script" path="res://Scripts/stat_info.gd" id="1_ywl2g"]
+
+[sub_resource type="FontVariation" id="FontVariation_gbf8e"]
+spacing_glyph = 3
+spacing_space = 5
+spacing_top = -5
+spacing_bottom = -5
+
+[node name="Stat Info" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(291, 20)
+layout_mode = 3
+anchor_right = 0.253
+anchor_bottom = 0.031
+offset_right = -0.456024
+offset_bottom = -0.0880013
+script = ExtResource("1_ywl2g")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(291, 25)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.625
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Property Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_gbf8e")
+theme_override_font_sizes/font_size = 16
+text = "Damage:"
+vertical_alignment = 1
+
+[node name="Property Value" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_gbf8e")
+theme_override_font_sizes/font_size = 16
+text = "999
+"
+vertical_alignment = 1
+
+[node name="Property Upgrade Value" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("FontVariation_gbf8e")
+theme_override_font_sizes/font_size = 16
+text = "+999"
+vertical_alignment = 1
