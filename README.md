@@ -1,3 +1,5 @@
+# Sick Day
+
 Sick Day was developed for the Do you WANNA Jam?! game jam on itch.io, marking my second game jam project.
 The nine-day event revolved around the theme inside out. The game is a tower defense where players strategically
 place white blood cells to defend the nucleus from waves of pathogens, earning DNA to place or upgrade cells.
